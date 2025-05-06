@@ -20,6 +20,19 @@ Performs clustering on the concatenated_filtered_proteins.fa db (e<1e-3, coverag
 ## search database setup
 ### download_nr.sh
 downloads the nr protein fasta file from NCBI
-### 
+### download_tax.sh
+download NCBI taxonomy files for indexing diamond db
+### make_diamond_db.sh
+make diamond indexed database on full NR
+### make_arthropod_diamond_database.sh
+make arthropod-only diamond indexed database on all_arthropod_concatenated_proteins.fa
+### download_blast_db.sh
+uses blast+ to download a pre-indexed blast db of nr, used for sequence retrieval 
 
-
+## round 1 DIAMOND blast inference
+### split_fasta_run_diamond_round1.py
+splits mmseq_cluster_representatives.fasta into 4 fastas and runs DIAMOND blastp on each in parallel by calling the helper script 'scripts/run_diamond_round1_on_split_fastas.sh'
+### split_diamond_round1_outputs.sh 
+splits the blast output tsv by query accession and stores the results in round1_diamond_split_outputs
+### run_diamond_on_missing_sequences.ipynb
+runs diamond on 11 hgt-chimeras from a previous pipeline run that were excluded from mmseq_cluster_representatives.fasta, along with any sequences in mmseq_cluster_representatives.fasta that failed to produce diamond hits in the first run of run_diamond_round1_on_split_fastas.sh
