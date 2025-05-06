@@ -17,4 +17,9 @@ Prepares a mmseqs2 database from concatenated_filtered_proteins.fa in preparatio
 Performs clustering on the concatenated_filtered_proteins.fa db (e<1e-3, coverage>.80), outputs representative sequence:member sequence mapping to mmseq_combined_output.tsv and the representative sequences to mmseq_cluster_representatives.fasta.
 
 
+## search database setup
+### download_nr.sh
+downloads the nr protein fasta file from NCBI
+### 
+
 
