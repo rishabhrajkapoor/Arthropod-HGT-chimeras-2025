@@ -29,10 +29,14 @@ make arthropod-only diamond indexed database on all_arthropod_concatenated_prote
 ### download_blast_db.sh
 uses blast+ to download a pre-indexed blast db of nr, used for sequence retrieval 
 
-## round 1 DIAMOND blast inference
+## DIAMOND blast inference chimera
 ### split_fasta_run_diamond_round1.py
 splits mmseq_cluster_representatives.fasta into 4 fastas and runs DIAMOND blastp on each in parallel by calling the helper script 'scripts/run_diamond_round1_on_split_fastas.sh'
 ### split_diamond_round1_outputs.sh 
-splits the blast output tsv by query accession and stores the results in round1_diamond_split_outputs
+splits the blast output tsv by query accession and stores the results in round1_diamond_split_outputs. Calls the helper script "split_blast_table.sh."
 ### run_diamond_on_missing_sequences.ipynb
-runs diamond on 11 hgt-chimeras from a previous pipeline run that were excluded from mmseq_cluster_representatives.fasta, along with any sequences in mmseq_cluster_representatives.fasta that failed to produce diamond hits in the first run of run_diamond_round1_on_split_fastas.sh
+runs diamond on 11 hgt-chimeras from a previous pipeline run that were excluded from mmseq_cluster_representatives.fasta, along with any sequences in mmseq_cluster_representatives.fasta that failed to produce diamond hits in the first run of run_diamond_round1_on_split_fastas.sh. Calls the helper scripts  "split_blast_table.sh" and "run_diamond_round1_on_missing_fasta.sh"
+### interval_demarcation_round1.py
+Performs a modified version of the interval demarcation algorithm from https://doi.org/10.1371/journal.pcbi.1005889 on round 1 blast results. Assigns preliminary "Meta" or "HGT" annotations to intervals depending on the taxonomic distribution of blast hits.
+### split_intervals_round1.py
+Using the results of interval demarcation, identifies putative chimeras with >=1 HGT AND >=1 Meta interval. Outputs "split_intervals.fasta" with each  HGT-chimera interval +/-10 amino acid residues as a separate sequence, with headers labeled as "genome accession;protein accession;annotation_(interval start,interval stop)."
