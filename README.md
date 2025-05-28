@@ -46,3 +46,22 @@ runs round 2 DIAMOND blast with demarcated intervals ("split_intervals.fasta") a
 runs round 2 DIAMOND blast with demarcated intervals ("split_intervals.fasta") as queries against custom database of arthropod proteins ("all_arthropod_concatenated_proteins"). Also splits outputs into separated tsvs by query, stored in round2_diamond_output_arthropod
 ### process_blast_round2.ipynb
 This notebook processes round 2 diamond blast hits vs NR to confirm "Meta" or "HGT" annotations of each interval. Subsequently, chimeras in which non-arthropod hits to adjacent series of "HGT" and "Meta" intervals are found are filtered out. The remaining HGT-chimeras are output to a pickled dictionary and .txt file.
+
+## HMMER-based inference
+### build_hmms_from_round2blast.ipynb
+This notebook builds profile HMMs from arthropod blast hits for each interval separately. It then calls scripts to run hmmsearch vs the custom database of arthropod proteins ("all_arthropod_concatenated_proteins.fa") and NR. Outputs are stored in the "hmmbuild" directory, with structure protein_accession/interval/data. Helper scripts are described below:
+### remove_redundant_seqs.awk
+awk script to remove any redundant sequences from interval fasta before running MUSCLE alignment.
+### hmmbuild_muscle.sh
+runs MUSCLE with default parameters on "sub_seq.fasta", a fasta with with the sub-interval of each hit.
+### hmmbuild_muscle_super5.sh
+Runs MUSCLE with super5 for MSAs that failed to run due to a time-out error with standard MUSCLE. 
+### concat_hmms.sh
+concatenates multiple profile hmms into one file for submission to hmmsearch. accepts a list of ~ delimited file paths.
+### hmmsearch_array.sbatch
+runs hmmsearch vs NR in a parallelized job array on profile hmms in the "concatenated_hmms" directory 
+### hmmsearch_vs_arthropoda.sh
+runs hmmsearch vs customized arthropod protein database "all_arthropod_concatenated_proteins.fa"
+### split_hmmer_csv.sh
+splits hmmer domtblout outputs into separated tsvs for each query
+
