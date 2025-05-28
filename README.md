@@ -39,8 +39,10 @@ runs diamond on 11 hgt-chimeras from a previous pipeline run that were excluded 
 ### interval_demarcation_round1.py
 Performs a modified version of the interval demarcation algorithm from https://doi.org/10.1371/journal.pcbi.1005889 on round 1 blast results. Assigns preliminary "Meta" or "HGT" annotations to intervals depending on the taxonomic distribution of blast hits.
 ### split_intervals_round1.py
-using the results of interval demarcation, identifies putative chimeras with >=1 HGT AND >=1 Meta interval. Outputs "split_intervals.fasta" with each  HGT-chimera interval +/-10 amino acid residues as a separate sequence, with headers labeled as "genome accession;protein accession;annotation_(interval start,interval stop)."
+using the results of interval demarcation, identifies putative chimeras with >=1 HGT AND >=1 Meta interval. Outputs "split_intervals.fasta" with each  HGT-chimera interval +/-10 amino acid residues as a separate sequence, with headers labeled as "genome accession;protein accession;annotation_(interval start,interval stop)."  Also splits outputs into separated tsvs by query, stored in "round2_diamond_output_split"
 ### run_diamond_round2.sh
 runs round 2 DIAMOND blast with demarcated intervals ("split_intervals.fasta") as queries against NR.
 ### run_diamond_round2_arthropod.sh
-runs round 2 DIAMOND blast with demarcated intervals ("split_intervals.fasta") as queries against custom database of arthropod proteins ("all_arthropod_concatenated_proteins")
+runs round 2 DIAMOND blast with demarcated intervals ("split_intervals.fasta") as queries against custom database of arthropod proteins ("all_arthropod_concatenated_proteins"). Also splits outputs into separated tsvs by query, stored in round2_diamond_output_arthropod
+### process_blast_round2.ipynb
+This notebook processes round 2 diamond blast hits vs NR to confirm "Meta" or "HGT" annotations of each interval. Subsequently, chimeras in which non-arthropod hits to adjacent series of "HGT" and "Meta" intervals are found are filtered out. The remaining HGT-chimeras are output to a pickled dictionary and .txt file.
