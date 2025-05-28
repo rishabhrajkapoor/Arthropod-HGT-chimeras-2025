@@ -23,9 +23,9 @@ downloads the nr protein fasta file from NCBI
 ### download_tax.sh
 download NCBI taxonomy files for indexing diamond db
 ### make_diamond_db.sh
-make diamond indexed database on full NR
+make diamond indexed database ("nr.dmnd") from full NR
 ### make_arthropod_diamond_database.sh
-make arthropod-only diamond indexed database on all_arthropod_concatenated_proteins.fa
+make arthropod-only diamond indexed database ("arthropod_db.dmnd") from "all_arthropod_concatenated_proteins.fa"
 ### download_blast_db.sh
 uses blast+ to download a pre-indexed blast db of nr, used for sequence retrieval 
 
@@ -39,4 +39,8 @@ runs diamond on 11 hgt-chimeras from a previous pipeline run that were excluded 
 ### interval_demarcation_round1.py
 Performs a modified version of the interval demarcation algorithm from https://doi.org/10.1371/journal.pcbi.1005889 on round 1 blast results. Assigns preliminary "Meta" or "HGT" annotations to intervals depending on the taxonomic distribution of blast hits.
 ### split_intervals_round1.py
-Using the results of interval demarcation, identifies putative chimeras with >=1 HGT AND >=1 Meta interval. Outputs "split_intervals.fasta" with each  HGT-chimera interval +/-10 amino acid residues as a separate sequence, with headers labeled as "genome accession;protein accession;annotation_(interval start,interval stop)."
+using the results of interval demarcation, identifies putative chimeras with >=1 HGT AND >=1 Meta interval. Outputs "split_intervals.fasta" with each  HGT-chimera interval +/-10 amino acid residues as a separate sequence, with headers labeled as "genome accession;protein accession;annotation_(interval start,interval stop)."
+### run_diamond_round2.sh
+runs round 2 DIAMOND blast with demarcated intervals ("split_intervals.fasta") as queries against NR.
+### run_diamond_round2_arthropod.sh
+runs round 2 DIAMOND blast with demarcated intervals ("split_intervals.fasta") as queries against custom database of arthropod proteins ("all_arthropod_concatenated_proteins")
