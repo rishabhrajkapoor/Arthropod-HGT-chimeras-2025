@@ -160,8 +160,13 @@ def get_annots(nam):
     
 """
 
-        #load dataframe, select top 30000 hits by evalue excluding arthropod hits
+    #load dataframeint
     dfo=pd.read_csv(f"/n/netscratch/extavour_lab/Everyone/Rishabh/round1_diamond_split_outputs/{nam}.tsv",sep="\t", names="qseqid sseqid stitle staxids sscinames sphylums skingdoms pident length mismatch gapopen qstart qend sstart send evalue bitscore".split(" "))
+    
+    ##output blast hit with header added
+    dfo.to_csv(f"/n/netscratch/extavour_lab/Everyone/Rishabh/round1_diamond_split_outputs/{nam}.tsv",sep="\t")
+    
+    ##exclude arthropod hits
     dfo=dfo[~dfo.sphylums.astype(str).str.contains("Arthropoda")]
     df1=dfo.loc[:,["sseqid","qstart","qend","sstart","send"]]
 
