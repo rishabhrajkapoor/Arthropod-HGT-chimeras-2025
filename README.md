@@ -65,3 +65,7 @@ runs hmmsearch vs customized arthropod protein database "all_arthropod_concatena
 ### split_hmmer_csv.sh
 splits hmmer domtblout outputs into separated tsvs for each query
 
+### Ankyrin repeat and transposable element filters
+## transposable_element_and_ankyrin_repeat_filters.ipynb
+This notebook processes outputs from the webservers of NCBI CD-search and CENSOR (urls in notebooks) to exclude ankyrin repeats and metazoan transposable elemnts (overlapping with HGT intervals).
+
