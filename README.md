@@ -71,10 +71,12 @@ This notebook processes outputs from the webservers of NCBI CD-search and CENSOR
 
 ## Orthologous clustering and phylogenetic dataset construction 
 ### extract_taxonomically_filtered_accessions.ipynb
-notebook contains scripts to extract arthropod protein accessions from NR, useful for subsequent filtering in phylogenetic database construction
+notebook contains scripts to extract arthropod protein accessions from NR, used for subsequent filtering in phylogenetic database construction
 ### add_suppresed_aedes_albopictus_hmmsearch.ipynb
 Add a secondary chimera  of XP_021699539.1 recovered in the first pipeline iteration run on A. albopictus annotation release GCF_006496715.1, but was later marked as a lncRNA in the current A.albopictus annotation release. We confirmed its expression and sequence via RT-PCR and Sanger sequencing after the first iteration, so manually added XP_029735553.1 back for consideration as a secondary chimera of XP_021699539.1.
 ### hmmsearch_analysis_and_clustering.ipynb
 Processes hmmsearch results into tsvs with headers. Then uses hmmsearch and blast results to identify secondary chimeras, perform orthologous clustering, verify secondary chimeras via interval blast search, and output a table of verified clusters with taxonomic information.
 ### diamond_secondary.sh
 Searches intervals of putative secondary chimeras vs NR with DIAMOND BLASTP. Called by "hmmsearch_analysis_and_clustering.ipynb."
+### phylogenetic_dataset_construction.ipynb
+Constructs fastas for phylogenetic inference on each separated interval using blast or hmmsearch results, then calls the helper scripts "align_iq_pipe.sh" or "align_iq_pipe_long.sh" to execulte MUSCLE, trimal and iq-tree for tree inference. 
