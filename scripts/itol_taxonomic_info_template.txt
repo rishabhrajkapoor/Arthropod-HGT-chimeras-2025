@@ -1,0 +1,18 @@
+DATASET_TEXT
+#In text datasets, each ID is associated to text label, which can be displayed directly on the node branch, or outside the tree
+#lines starting with a hash are comments and ignored during parsing
+#=================================================================#
+#                    MANDATORY SETTINGS                           #
+#=================================================================#
+#select the separator which is used to delimit the data below (TAB,SPACE or COMMA).This separator must be used throughout this file.
+
+SEPARATOR COMMA
+
+
+#label is used in the legend table (can be changed later)
+DATASET_LABEL,taxonomic_label
+
+#dataset color (can be changed later)
+COLOR,#ff0000
+
+DATA
