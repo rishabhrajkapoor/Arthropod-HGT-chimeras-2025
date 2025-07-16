@@ -80,3 +80,5 @@ Processes hmmsearch results into tsvs with headers. Then uses hmmsearch and blas
 Searches intervals of putative secondary chimeras vs NR with DIAMOND BLASTP. Called by "hmmsearch_analysis_and_clustering.ipynb."
 ### phylogenetic_dataset_construction.ipynb
 Constructs fastas for phylogenetic inference on each separated interval using blast or hmmsearch results, then calls the helper scripts "align_iq_pipe.sh" or "align_iq_pipe_long.sh" to execulte MUSCLE, trimal and iq-tree for tree inference. 
+### root_annotate_upload_trees.ipynb
+Executes scripts to root maximum likelihood trees via minimum ancestor deviation (using mad.py obtained from https://www.nature.com/articles/s41559-017-0193), annotate the files with iTOL annotation files for taxonomic labels, and upload to iTOl with the itol python api.
