@@ -47,6 +47,12 @@ runs round 2 DIAMOND blast with demarcated intervals ("split_intervals.fasta") a
 ### process_blast_round2.ipynb
 This notebook processes round 2 diamond blast hits vs NR to confirm "Meta" or "HGT" annotations of each interval. Subsequently, chimeras in which non-arthropod hits to adjacent series of "HGT" and "Meta" intervals are found are filtered out. The remaining HGT-chimeras are output to a pickled dictionary and .txt file.
 
+### blast_plot_combined_one_two.py
+plots blastplots for round 1 and 2 blast searches, showing taxonomic origin, aligned region against query, and e-value for all non-arthropod hits. 
+
+### combine_blastplots_to_pdf.py
+combines blastplots to make a pdf (only for 104 final representative primary chimeras).
+
 ## HMMER-based inference
 ### build_hmms_from_round2blast.ipynb
 This notebook builds profile HMMs from arthropod blast hits for each interval separately. It then calls scripts to run hmmsearch vs the custom database of arthropod proteins ("all_arthropod_concatenated_proteins.fa") and NR. Outputs are stored in the "hmmbuild" directory, with structure protein_accession/interval/data. Helper scripts are described below:
