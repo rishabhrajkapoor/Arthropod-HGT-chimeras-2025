@@ -91,3 +91,6 @@ Executes scripts to root maximum likelihood trees via minimum ancestor deviation
 
 ### HGT_phylogenetic_origins.ipynb
 identifies taxa of sister and cousin branches to faciltate manual tree inspection; identifies likely donors and symbiont donors of HGT intervals (figure 2A-B)
+
+### within_genome_parent_analysis.ipynb
+This notebook performs 3 analyses related to the duplication-based chimera origin hypothesis: 1. BLASTp-based within genome duplicate search (using the helper scripts make_diamond_protein_db.sh and run_diamond_query.sh), 2. tree-based within genome parent search, 3. tree-based search for other arthropod species with non-chimeric arthropods.
