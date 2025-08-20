@@ -104,6 +104,9 @@ Performs computations of GC content and codon use within HGT- and metazoan-inter
 ### expression_support.ipynb
 Obtains expression support for HGT-chimeras by querying NCBI for the percentage of each transcript that is ab initio and a 'full'/'partial' expression support label.
 
+### PCR_alignments.ipynb
+Obtains MSAs of translations of RT-PCR sequencing products with their respective RefSeq/Genbank predicted protein accessions (SI Text 2), using the helper script "pcr_align.sh."
+
 ### dnds_whole_gene_and_partition.ipynb
 Runs dN/dS analysis on whole gene/CDS sequences, as well as partitioned analyses comparing HGT and non HGT-derived codons.
 
