@@ -92,7 +92,9 @@ Executes scripts to root maximum likelihood trees via minimum ancestor deviation
 ### HGT_phylogenetic_origins.ipynb
 identifies taxa of sister and cousin branches to faciltate manual tree inspection; identifies likely donors and symbiont donors of HGT intervals (figure 2A-B)
 
-## Orthologous clustering and phylogenetic dataset construction 
+## Downstream analysis of HGT-chimeras
+### analysis_of_cluster3.ipynb
+Runs phylogenetic analysis on whole-protein alignments of representatives of cluster 3 for investigation of the hypothesis of inter-arthropod transfer.
 ### within_genome_parent_analysis.ipynb
 This notebook performs 3 analyses related to the duplication-based chimera origin hypothesis: 1. BLASTp-based within genome duplicate search (using the helper scripts make_diamond_protein_db.sh and run_diamond_query.sh), 2. tree-based within genome parent search, 3. tree-based search for other arthropod species with non-chimeric arthropods.
 
@@ -126,3 +128,4 @@ Runs pal2nal to output a "codon"-formatted output codon alignment, rather than p
 Runs codeml in PAML using partition/fixed site models, using the configuration file "m2.ctl" for the null model that assumes a single dN/dS value sites and the file "m4.ctl" that permits different dN/dS values across sites. 
 #### run_branch_paml.sh
 Runs codeml in PAML using branch models, using the configuration file "0ch.ctl" for the null model that assumes a single dN/dS value across branches and the file "bch.ctl" for the model that permits different dN/dS values by branch.
+
