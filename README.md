@@ -41,11 +41,11 @@ Except where otherwise noted in the below table, all bioinformatics software was
 
 
 # Scripts
-This folder contains scripts for the HGT-detection pipeline. They are described below in the order that they are run.
+This folder contains scripts for the HGT-chimera detection pipeline. They are described below in the order that they are run.
 
 ## Input Data Processing
 ### download_genomes.py
-Downloads 319 RefSeq and 197 GenBank genome annotations (as found in SI Table I of the manuscript). Calls the helper script `download_genome.sh` on each genome to access the NCBI FTP website.  
+Downloads 319 RefSeq and 197 GenBank genome annotations (as found in SI Table 1 of the manuscript). Calls the helper script `download_genome.sh` on each genome to access the NCBI FTP website.  
 ### extract_cds_by_scaffold_len.sh
 Using GFFs, protein FASTAs, and genomic FASTAs of downloaded RefSeq genomes, excludes protein encoded by genes on scaffolds <100,000 bp in length. Requires seqkit.  
 ### concat_and_edit_fasta_headers.sh 
@@ -71,23 +71,23 @@ Uses BLAST+ to download a pre-indexed BLAST db of NR, used for sequence retrieva
 ### split_fasta_run_diamond_round1.py
 Splits `mmseq_cluster_representatives.fasta` into 4 FASTAs and runs DIAMOND BLASTp on each in parallel by calling the helper script `scripts/run_diamond_round1_on_split_fastas.sh`.  
 ### split_diamond_round1_outputs.sh 
-Splits the BLAST output TSV by query accession and stores the results in `round1_diamond_split_outputs`. Calls the helper script `split_blast_table.sh.`  
+Splits the BLASTp output TSV by query accession and stores the results in `round1_diamond_split_outputs`. Calls the helper script `split_blast_table.sh.`  
 ### run_diamond_on_missing_sequences.ipynb
 Runs DIAMOND on 11 HGT-chimeras from a previous pipeline run that were excluded from `mmseq_cluster_representatives.fasta`, along with any sequences in `mmseq_cluster_representatives.fasta` that failed to produce DIAMOND hits in the first run of `run_diamond_round1_on_split_fastas.sh`. Calls the helper scripts `split_blast_table.sh` and `run_diamond_round1_on_missing_fasta.sh`.  
 ### interval_demarcation_round1.py
-Performs a modified version of the interval demarcation algorithm from https://doi.org/10.1371/journal.pcbi.1005889 on round 1 BLAST results. Assigns preliminary "Meta" or "HGT" annotations to intervals depending on the taxonomic distribution of BLAST hits.  
+Performs a modified version of the interval demarcation algorithm from https://doi.org/10.1371/journal.pcbi.1005889 on round 1 BLASTp results. Assigns preliminary "Meta" or "HGT" annotations to intervals depending on the taxonomic distribution of BLASTp hits.  
 ### split_intervals_round1.py
-Using the results of interval demarcation, identifies putative chimeras with ≥1 HGT AND ≥1 Meta interval. Outputs `split_intervals.fasta` with each HGT-chimera interval ±10 amino acid residues as a separate sequence, with headers labeled as `genome accession;protein accession;annotation_(interval start,interval stop).` Also splits outputs into separated TSVs by query, stored in `round2_diamond_output_split`.  
+Using the results of interval demarcation, identifies putative HGT-chimeras with ≥1 HGT AND ≥1 Meta interval. Outputs `split_intervals.fasta` with each HGT-chimera interval ±10 amino acid residues as a separate sequence, with headers labeled as `genome accession;protein accession;annotation_(interval start,interval stop).` Also splits outputs into separated TSVs by query, stored in `round2_diamond_output_split`.  
 ### run_diamond_round2.sh
-Runs round 2 DIAMOND BLAST with demarcated intervals (`split_intervals.fasta`) as queries against NR.  
+Runs round 2 DIAMOND BLASTp with demarcated intervals (`split_intervals.fasta`) as queries against NR.  
 ### run_diamond_round2_arthropod.sh
-Runs round 2 DIAMOND BLAST with demarcated intervals (`split_intervals.fasta`) as queries against custom database of arthropod proteins (`all_arthropod_concatenated_proteins`). Also splits outputs into separated TSVs by query, stored in `round2_diamond_output_arthropod`.  
+Runs round 2 DIAMOND BLASTp with demarcated intervals (`split_intervals.fasta`) as queries against custom database of arthropod proteins (`all_arthropod_concatenated_proteins`). Also splits outputs into separated TSVs by query, stored in `round2_diamond_output_arthropod`.  
 ### process_blast_round2.ipynb
-Processes round 2 DIAMOND BLAST hits vs NR to confirm "Meta" or "HGT" annotations of each interval. Subsequently, chimeras in which non-arthropod hits to adjacent series of "HGT" and "Meta" intervals are found are filtered out. The remaining HGT-chimeras are output to a pickled dictionary and `.txt` file.  
+Processes round 2 DIAMOND BLAST hits vs NR to confirm "Meta" or "HGT" annotations of each interval. Subsequently, HGT-chimeras in which non-arthropod hits to adjacent series of "HGT" and "Meta" intervals are found are filtered out. The remaining HGT-chimeras are output to a pickled dictionary and `.txt` file.  
 ### blast_plot_combined_one_two.py
-Plots BLAST plots for round 1 and 2 BLAST searches, showing taxonomic origin, aligned region against query, and e-value for all non-arthropod hits.  
+Plots BLASTp plots for round 1 and 2 BLAST searches, showing taxonomic origin, aligned region against query, and e-value for all non-arthropod hits.  
 ### combine_blastplots_to_pdf.py
-Combines BLAST plots to make a PDF (only for 104 final representative primary chimeras).
+Combines BLASTp plots to make a PDF (only for 104 final representative primary chimeras).
 
 ## HMMER-based Inference
 ### build_hmms_from_round2blast.ipynb
@@ -115,9 +115,9 @@ Processes outputs from the webservers of NCBI CD-search and CENSOR (URLs in note
 ### extract_taxonomically_filtered_accessions.ipynb
 Contains scripts to extract arthropod protein accessions from NR, used for subsequent filtering in phylogenetic database construction.  
 ### add_suppressed_aedes_albopictus_hmmsearch.ipynb
-Add a secondary chimera of XP_021699539.1 recovered in the first pipeline iteration run on *A. albopictus* annotation release GCF_006496715.1, but later marked as an lncRNA in the current *A. albopictus* annotation release. We confirmed its expression and sequence via RT-PCR and Sanger sequencing after the first iteration, so manually added XP_029735553.1 back for consideration as a secondary chimera of XP_021699539.1.  
+Add a secondary HGT-chimera of XP_021699539.1 recovered in the first pipeline iteration run on *A. albopictus* annotation release GCF_006496715.1, but later marked as an lncRNA in the *A. albopictus* annotation release available at the time of writing. We confirmed its expression and sequence via RT-PCR and Sanger sequencing after the first iteration, so manually added XP_029735553.1 back for consideration as a secondary HGT-chimera of XP_021699539.1.  
 ### hmmsearch_analysis_and_clustering.ipynb
-Processes `hmmsearch` results into TSVs with headers. Then uses `hmmsearch` and BLAST results to identify secondary chimeras, perform orthologous clustering, verify secondary chimeras via interval BLAST search, and output a table of verified clusters with taxonomic information.  
+Processes `hmmsearch` results into TSVs with headers. Then uses `hmmsearch` and BLAST results to identify secondary HGT-chimeras, perform orthologous clustering, verify secondary chimeras via interval BLAST search, and output a table of verified clusters with taxonomic information.  
 ### diamond_secondary.sh
 Searches intervals of putative secondary chimeras vs NR with DIAMOND BLASTp. Called by `hmmsearch_analysis_and_clustering.ipynb.`  
 ### phylogenetic_dataset_construction.ipynb
@@ -150,7 +150,7 @@ Runs branch-specific dN/dS models to test the hypothesis of neofunctionalization
 ### dnds_scripts
 Contains the following helper scripts/files called by `dnds_whole_gene_and_partition.ipynb` and `branch_model.ipynb` to execute dN/dS analyses with PAML:  
 #### run_muscle.sh
-Runs MUSCLE to obtain a protein MSA (when only 2 chimeras are aligned per cluster).  
+Runs MUSCLE to obtain a protein multiple sequence alignment (when only 2 chimeras are aligned per cluster).  
 #### run_iqtree_dnds_pipe.sh
 Runs MUSCLE, trimAl, and IQ-TREE to obtain maximum likelihood gene trees for dN/dS computation.  
 #### run_pal2nal.sh
