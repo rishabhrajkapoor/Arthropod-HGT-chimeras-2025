@@ -1,7 +1,7 @@
 # Arthropod HGT-chimeras
 
 ---
-This repository contains scripts used to infer chimeric HGT genes in the manuscript "Evolutionary innovation through fusion of sequences from across the tree of life." Input and output data are available in the accompanying Dryad repository (INSERT URL).  
+This repository contains scripts used to infer chimeric HGT genes in the manuscript "Evolutionary innovation through fusion of sequences from across the tree of life." Input and output data are available in the accompanying Dryad repository [Dryad repository]).  
 
 # Dependencies 
 
