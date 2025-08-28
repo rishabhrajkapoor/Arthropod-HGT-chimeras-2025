@@ -10,6 +10,7 @@ Except where otherwise noted in the below table, all bioinformatics software was
 | Software or Algorithm | Version      | URL |
 |------------------------|--------------|-----|
 | MMseqs                 | v2:14.7e284  | https://biocontainers.pro/ |
+| BLAST                 | v2.13.0     | https://www.ncbi.nlm.nih.gov/books/NBK279690/  |
 | SeqKit                 | v2.9.0       | https://biocontainers.pro/ |
 | DIAMOND                | v2.0.15      | https://biocontainers.pro/ |
 | HMMER                  | v3.3.2       | https://biocontainers.pro/ |
