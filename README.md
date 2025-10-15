@@ -166,3 +166,5 @@ Runs PAL2NAL to output a "codon"-formatted codon alignment, rather than PAML out
 Runs codeml in PAML using partition/fixed site models, using the configuration file `m2.ctl` for the null model that assumes a single dN/dS value across sites and the file `m4.ctl` that permits different dN/dS values across sites.  
 #### run_branch_paml.sh
 Runs codeml in PAML using branch models, using the configuration file `0ch.ctl` for the null model that assumes a single dN/dS value across branches and the file `bch.ctl` for the model that permits different dN/dS values by branch.  
+#### differential_expression.ipynb
+Runs differential expression analysis on Eurytemora RNA-Seq data, calling the helper script 'deseq2eurytemora.R'
