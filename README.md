@@ -172,4 +172,4 @@ Runs codeml in PAML using partition/fixed site models, using the configuration f
 #### run_branch_paml.sh
 Runs codeml in PAML using branch models, using the configuration file `0ch.ctl` for the null model that assumes a single dN/dS value across branches and the file `bch.ctl` for the model that permits different dN/dS values by branch.  
 #### differential_expression.ipynb
-Runs differential expression analysis on Eurytemora RNA-Seq data, calling the helper script `deseq2eurytemora.R`
+Runs differential expression analysis on Eurytemora RNA-Seq data, calling the helper script `rna_pipe_paired.R`. Also should execute `deseq2eurytemora.R` after downloading and processing read data for differential expression analysis.
