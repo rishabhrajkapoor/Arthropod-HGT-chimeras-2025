@@ -38,6 +38,11 @@ Except where otherwise noted in the below table, all bioinformatics software was
 | Python Imaging Library (PIL/Pillow) | v9.1.1 | https://pypi.org/project/pillow/ |
 | pyMSAviz               | v0.4.2       | https://moshi4.github.io/pyMSAviz/ |
 | fpdf                   | v1.7.2       | https://pypi.org/project/fpdf/ |
+|SRA toolkit | v.3.1.0 | https://biocontainers.pro/ |
+|Trim Galore | v.0.6.9 | https://biocontainers.pro/ |
+|DESeq2  | v.1.46.0 | https://biocontainers.pro/ |
+|Subread | v.2.0.6 | https://biocontainers.pro/ |
+
 
 
 
@@ -167,4 +172,4 @@ Runs codeml in PAML using partition/fixed site models, using the configuration f
 #### run_branch_paml.sh
 Runs codeml in PAML using branch models, using the configuration file `0ch.ctl` for the null model that assumes a single dN/dS value across branches and the file `bch.ctl` for the model that permits different dN/dS values by branch.  
 #### differential_expression.ipynb
-Runs differential expression analysis on Eurytemora RNA-Seq data, calling the helper script 'deseq2eurytemora.R'
+Runs differential expression analysis on Eurytemora RNA-Seq data, calling the helper script `deseq2eurytemora.R`
