@@ -172,8 +172,8 @@ Runs codeml in PAML using partition/fixed site models, using the configuration f
 #### run_branch_paml.sh
 Runs codeml in PAML using branch models, using the configuration file `0ch.ctl` for the null model that assumes a single dN/dS value across branches and the file `bch.ctl` for the model that permits different dN/dS values by branch.  
 #### differential_expression.ipynb
-Runs differential expression analysis on Eurytemora RNA-Seq data, calling the helper script `rna_pipe_paired.R`. Also should execute `deseq2eurytemora.R` after downloading and processing read data for differential expression analysis.
+Runs differential expression analysis on _Eurytemora_ RNA-Seq data, calling the helper script `rna_pipe_paired.R`. Also should execute `deseq2eurytemora.R` after downloading and processing read data for differential expression analysis.
 #### cluster_14_add_TSAs.ipynb
 Searches copepod transcriptome shotgun assemblies (TSAs) for additional instances of cluster 14 HGT chimeras, using `copepod_transdecoder.sh` to obtain protein translations then running hmmsearch-based HGT-chimera detection as above. Finally runs`run_iqtree_cluster14_tsas.sh` to re-generate maximum likelihood trees with the additional sequences. 
 #### penaeus_topology_tests.ipynb
-Performs constrained tree topology searches for non-HGT topologies of HGT-chimera cluster 12 using `constrained_topo_search.sh` and then tree topology tests with`constrained_topo_tests.sh`
+Performs constrained tree topology searches for non-HGT topologies of HGT-chimera cluster 12 using `constrained_topo_search.sh` and then tree topology tests with `constrained_topo_tests.sh`.
