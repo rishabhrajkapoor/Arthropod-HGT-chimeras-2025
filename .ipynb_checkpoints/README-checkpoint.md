@@ -186,3 +186,5 @@ Performs constrained topology searches for metazoan monophyly for all HGT interv
 Analysis of non-chimeric HGT relatives to evaluate the hypothesis that HGT-chimeras are preceded by non-chimeric HGTs.
 #### additional_contamination_analysis.ipynb
 Performs analyses of contamination as an alternative explanation for HGT-chimeras: 1. uses DIAMOND (`run_diamond_neighbors.sh`) vs NR to search for metazoan neighbors; 2. downloads and processes available long-read DNA sequencing data (`requeue_run_ONT_mapper.sh`).
+#### CDD_top_hits_plot.ipynb
+Generates stack bar plot of NCBI CDD annotations among HGT-chimeras.
